@@ -11,6 +11,10 @@ class MyController extends Controller
     }
 
     public function ololo(){
-        echo "NEW OLOLO";
+        $message = "<h1>Hello 'LARAVEL</h1>";
+
+      return view('my-auth.login', [
+          'myMessage' => $message
+      ]);
     }
 }

@@ -4,7 +4,7 @@
 <div class="container">
     <form method="POST" action="/auth">
         @csrf
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">{{ $myMessage }}</h1>
 
         <div class="form-floating">
             <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
