@@ -9,4 +9,8 @@ class MyController extends Controller
     public function myPage(){
        return view('folder1.folder2.myPage');
     }
+
+    public function ololo(){
+        echo "NEW OLOLO";
+    }
 }
