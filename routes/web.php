@@ -21,10 +21,10 @@ Route::get('/', function () {
 
 Route::get('my-first-page', [\App\Http\Controllers\MyController::class, 'myPage']);
 
-//Auth::routes();
+Auth::routes();
 Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-
-Route::get('login', [\App\Http\Controllers\AuthController::class, 'login']);
-Route::post('auth', [\App\Http\Controllers\AuthController::class, 'auth']);
+//
+//Route::get('login', [\App\Http\Controllers\AuthController::class, 'login']);
+//Route::post('auth', [\App\Http\Controllers\AuthController::class, 'auth']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
