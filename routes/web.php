@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('ololo', [\App\Http\Controllers\MyController::class, 'ololo']);
+Route::get('ololo', function (){
+    return view('layouts.admin');
+});
 
 Route::get('/', function () {
     return view('welcome');
