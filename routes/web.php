@@ -27,14 +27,23 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('admin', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
-Route::get('admin/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'index']);
-Route::get('admin/articles/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create']);
-Route::post('admin/articles/store', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])
-    ->name('admin.store_article');
-Route::get('admin/articles/{id}/edit', [\App\Http\Controllers\Admin\ArticleController::class, 'edit'])
-->name('admin.edit_article');
-Route::put('admin/articles/{id}/update', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])
-        ->name('admin.update_article');
-Route::delete('admin/articles/{id}/delete', [\App\Http\Controllers\Admin\ArticleController::class, 'delete'])
-        ->name('admin.delete_article');
+
+
+Route::prefix('admin')->name('admin.')->group(function (){
+
+
+    Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
+    //Route::get('article/{article}', [\App\Http\Controllers\Admin\ArticleController::class, 'edit']);
+
+    Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class);
+
+
+});
+
+
+
+//Route::resource('admin/articles', \App\Http\Controllers\Admin\ArticleController::class);
+//Route::resources([
+//    'country'=> \App\Http\Controllers\Admin\CountryController::class,
+//    'article' => \App\Http\Controllers\Admin\ArticleController::class
+//                 ]);

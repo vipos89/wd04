@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCountryRequest;
+use App\Http\Requests\UpdateCountryRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
@@ -20,18 +23,40 @@ class ArticleController extends Controller
         return view('admin.articles.create');
     }
 
-    public function store(Request $request){
+    public function store(StoreCountryRequest $request){
+//        $request->validate([
+//            'name' => 'required|min:10|max:200',
+//            'content' => 'min:10|max:10000'
+//                           ]);
+
+//        $this->validate($request,
+//            [
+//            'name' => 'required|min:10|max:200',
+//            'content' => 'min:10|max:10000'
+//                           ]
+//
+//        );
+
+//        $errors = Validator::make($request->all(),
+//                    [
+//            'name' => 'required|min:10|max:200',
+//            'content' => 'min:10|max:10000'
+//                           ]
+//
+//        );
+//        dd($errors->getMessageBag()->all());
+
+
         Article::query()->create($request->all());
         // create article
     }
 
-    public function edit(Request $request, $id){
-        $article = Article::query()->findOrFail($id);
+    public function edit(Request $request, Article $article){
 
         return view('admin.articles.edit', compact('article'));
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateCountryRequest $request, $id){
         $article  = Article::query()->findOrFail($id);
         $article->fill($request->all());
         $article->save();

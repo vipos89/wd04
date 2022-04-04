@@ -18,8 +18,8 @@
                 <tr>
                     <td>{{ $article->name }}</td>
                     <td>
-                        <a href="{{ route('admin.edit_article', ['id'=> $article->id ]) }}" class="btn btn-lg btn-info">Редактировать</a>
-                        <form method="POST" action="{{ route('admin.delete_article', ['id'=> $article->id ]) }}">
+                        <a href="{{ route('admin.article.edit', ['article'=> $article ]) }}" class="btn btn-lg btn-info">Редактировать</a>
+                        <form method="POST" action="{{ route('admin.article.destroy', ['article'=> $article ]) }}">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-lg btn-danger">Удалить</button>
