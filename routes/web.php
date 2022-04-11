@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
 
-Route::get('my-first-page', [\App\Http\Controllers\MyController::class, 'myPage']);
 
 Auth::routes();
 //Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
@@ -37,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
     Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class);
     Route::resource('country', \App\Http\Controllers\Admin\CountryController::class);
+    Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
 
 
 });
