@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCountryRequest;
-use App\Http\Requests\UpdateCountryRequest;
+use App\Http\Requests\CountryRequest;
 use App\Models\Country;
 use Illuminate\Http\Response;
 
@@ -17,7 +17,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.countries.index', ['countries' => Country::all()]);
     }
 
     /**
@@ -27,18 +27,18 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.countries.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCountryRequest  $request
+     * @param  \App\Http\Requests\CountryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCountryRequest $request)
+    public function store(CountryRequest $request)
     {
-        //
+        Country::create($request->all());
     }
 
     /**
@@ -60,19 +60,20 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+
+        return view('admin.countries.edit', compact('country'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCountryRequest  $request
+     * @param  \App\Http\Requests\CountryRequest  $request
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCountryRequest $request, Country $country)
+    public function update(CountryRequest $request, Country $country)
     {
-        //
+        $country->fill($request->all())->save();
     }
 
     /**

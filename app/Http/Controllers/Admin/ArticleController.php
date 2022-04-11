@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCountryRequest;
-use App\Http\Requests\UpdateCountryRequest;
+use App\Http\Requests\CountryRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +23,7 @@ class ArticleController extends Controller
         return view('admin.articles.create');
     }
 
-    public function store(StoreCountryRequest $request){
+    public function store(Request $request){
 //        $request->validate([
 //            'name' => 'required|min:10|max:200',
 //            'content' => 'min:10|max:10000'
@@ -56,13 +56,13 @@ class ArticleController extends Controller
         return view('admin.articles.edit', compact('article'));
     }
 
-    public function update(UpdateCountryRequest $request, $id){
+    public function update(Request $request, $id){
         $article  = Article::query()->findOrFail($id);
         $article->fill($request->all());
         $article->save();
     }
 
-    public function delete($id){
+    public function delete($id = 1){
        dd( Article::select(['id', 'name'])
                ->where('id', 5  )
                ->get());

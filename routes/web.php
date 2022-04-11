@@ -36,9 +36,14 @@ Route::prefix('admin')->name('admin.')->group(function (){
     //Route::get('article/{article}', [\App\Http\Controllers\Admin\ArticleController::class, 'edit']);
 
     Route::resource('article', \App\Http\Controllers\Admin\ArticleController::class);
+    Route::resource('country', \App\Http\Controllers\Admin\CountryController::class);
 
 
 });
+
+//Route::fallback(function () {
+//        dd(111);
+//});
 
 
 

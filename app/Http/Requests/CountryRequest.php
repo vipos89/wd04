@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCountryRequest extends FormRequest
+class CountryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateCountryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class UpdateCountryRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->country->id ?? '';
+
         return [
-            //
+            'name' => 'required|min:10|max:200',
+            'code' => 'required|min:2|max:4|unique:countries,code,'.$id
+
         ];
     }
 }
