@@ -35,6 +35,7 @@
                 </tbody>
             </table>
         </div>
+        {{ $categories->links('partials.pagination') }}
 
         <div class="clearfix"> </div>
     </div>
