@@ -13,6 +13,7 @@
                 <tr>
                     <th >#</th>
                     <th >Название категории</th>
+                    <th >img</th>
                     <th > Действия</th>
                 </tr>
                 </thead>
@@ -20,6 +21,7 @@
                 @foreach($categories as $category)
                 <tr>
                     <td> {{$loop->iteration}}</td>
+                    <td> <img src="{{ asset($category->img) }}" style="max-width: 100px"></td>
                     <td>{{ $category->name }}</td>
                     <td>
                         <a href="{{ route('admin.category.edit', ['category'=> $category ]) }}" class="btn btn-lg btn-info">Редактировать</a>
