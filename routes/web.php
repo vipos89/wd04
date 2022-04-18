@@ -1,19 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Web Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register web routes for your application. These
+    | routes are loaded by the RouteServiceProvider within a group which
+    | contains the "web" middleware group. Now create something great!
+    |
+    */
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
+Route::get('test', function (){
+//   Role::create(['name' => 'admin']);
+//   Role::create(['name' => 'moderator']);
+    $role = Role::findByName('admin');
+
+    $user = App\Models\User::find(21);
+    $user->assignRole($role);
+
+});
 
 
 
@@ -27,7 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::prefix('admin')->name('admin.')->group(function (){
+Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function (){
 
 
     Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
