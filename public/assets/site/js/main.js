@@ -3,6 +3,13 @@
     
     // Dropdown on mouse hover
     $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
                 $('.navbar .dropdown').on('mouseover', function () {
@@ -98,6 +105,28 @@
             }
         }
         button.parent().parent().find('input').val(newVal);
+    });
+
+    $('.cart-button').on('click', function (event){
+        event.preventDefault();
+
+       $.ajax({
+           url: '/add-to-cart',
+           method: 'POST',
+           data: {
+               id: $(event.target).data('id')
+           },
+           success: function (response){
+               $.each(response, function(index, element) {
+                  // console.info(element);
+               });
+           },
+           error: function (){
+               console.log('error')
+           }
+
+       });
+
     });
     
 })(jQuery);

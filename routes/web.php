@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\CartController;
+    use App\Http\Controllers\CatalogController;
+    use App\Http\Controllers\SiteController;
+    use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
     /*
@@ -14,15 +17,15 @@ use Spatie\Permission\Models\Role;
     |
     */
 
-Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
-Route::get('test', function (){
-//   Role::create(['name' => 'admin']);
-//   Role::create(['name' => 'moderator']);
-    $role = Role::findByName('admin');
+Route::get('/', [SiteController::class, 'index']);
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 
-    $user = App\Models\User::find(21);
-    $user->assignRole($role);
+Route::post('/add-to-cart', [CartController::class, 'add']);
 
+
+Route::get('test', function (Illuminate\Http\Request $request){
+   // $request->session()->put('_token2222', 'dsfsdfsdfsdf');
+        dump($request->session()->all());
 });
 
 

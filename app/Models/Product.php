@@ -22,8 +22,10 @@ class Product extends Model
         return 'art.#'.$this->attributes['id'];
     }
 
-    public function getPriceAttribute(){
-        return 'price:'.$this->attributes['price'];
+
+
+    public function getImgAttribute(){
+        return 'https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg';
     }
 
     public function setNewPriceAttribute($value){
