@@ -18,6 +18,8 @@ class CatalogController extends Controller
             ->concat(Product::all())
             ->concat(Product::all())
             ->concat(Product::all());
-        return view('catalog.catalog', compact('products'));
+        return response(view('catalog.catalog', compact('products')))
+            ->withCookie(cookie('ololo5', json_encode(['ewrewrwer', 'wefwefwefwe'])))
+            ;
     }
 }

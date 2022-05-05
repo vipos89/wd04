@@ -25,8 +25,69 @@ Route::post('/add-to-cart', [CartController::class, 'add']);
 
 Route::get('test', function (Illuminate\Http\Request $request){
    // $request->session()->put('_token2222', 'dsfsdfsdfsdf');
+        \Illuminate\Support\Facades\Session::all();
         dump($request->session()->all());
 });
+
+    Route::get('cart', function (Illuminate\Http\Request $request){
+        //$response = ;
+        \Illuminate\Support\Facades\Http::get('https://belarusbank.by/api/kursExchange', [
+            'city' => 'Брест',
+            'cur' => 'USD'
+        ]);
+
+        \Illuminate\Support\Facades\Http::asForm()->post('ololo', [
+            'name' => 'ololo',
+            'price' => 222
+        ]);
+
+        //$response = file_get_contents('https://belarusbank.by/api/kursExchange?city=%D0%91%D1%80%D0%B5%D1%81%D1%82');
+        //dd(json_decode($response, true));
+
+//        $client = new \GuzzleHttp\Client();
+//
+//        $client->post( '', [
+//            'form_data' => [
+//                'name' => 'ewrewrewr',
+//                'price' => 22222,
+//
+//            ]
+//        ]);
+
+//        $client = new \GuzzleHttp\Client();
+//        $response = $client->get('https://belarusbank.by/api/kursExchange?city=%D0%91%D1%80%D0%B5%D1%81%D1%82');
+//
+//
+//        dump($response->getStatusCode());
+//        dd($response->getBody()->getContents());
+
+
+
+
+
+
+
+//       dump( $request->cookie('cook'));
+//        //Create a response instance
+//        $response = new Illuminate\Http\Response('Hello World');
+//
+////Call the withCookie() method with the response method
+//        ;
+//        $response->withCookie(cookie('cook', $request->input('cook')));
+//
+////return the response
+//        return $response;
+//       $cart = \Illuminate\Support\Facades\Session::get('cart', []);
+//       $ids = array_keys($cart);
+//
+//       $products = \App\Models\Product::query()
+//           ->whereIn('id', $ids)
+//           ->get();
+//        foreach ($products as $product){
+//            dump($product->name. " ". $cart[$product->id]);
+//        }
+//       dump($products);
+    });
 
 
 
