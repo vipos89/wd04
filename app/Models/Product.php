@@ -32,4 +32,9 @@ class Product extends Model
         $this->price = 1111;
         //$this->attributes['price'] = (int) ($value*100);
     }
+
+    public function scopePrice($query, $price){
+        if ($price > 10)
+        $query->where('price', '>',  $price);
+    }
 }

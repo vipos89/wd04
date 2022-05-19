@@ -3,6 +3,7 @@
     use App\Http\Controllers\CartController;
     use App\Http\Controllers\CatalogController;
     use App\Http\Controllers\SiteController;
+    use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -24,9 +25,44 @@ Route::post('/add-to-cart', [CartController::class, 'add']);
 
 
 Route::get('test', function (Illuminate\Http\Request $request){
-   // $request->session()->put('_token2222', 'dsfsdfsdfsdf');
-        \Illuminate\Support\Facades\Session::all();
-        dump($request->session()->all());
+    \Illuminate\Support\Facades\App::setLocale('ru');
+    return view('test');
+    $testMail = new \App\Mail\TestMail('Hello text', 2);
+    return $testMail->render();
+
+    for ($i=0; $i<10; $i++){
+
+        \Illuminate\Support\Facades\Mail::to('ololo@mail.ru')
+            ->queue($testMail->onQueue('email'));
+    }
+
+    \Illuminate\Support\Facades\Artisan::call('queue:listen');
+
+
+//        $user = \App\Models\Product::query()
+//            //->selectRaw('price > ? and price < ?', [10, 100])
+//            ->selectRaw('price * ? * ? as price_with_tax', [1.0825, 10000])
+//            ->get()
+//            ->toArray();
+//
+//        dd($user);$user
+
+
+//    $page = $request->input('page', 1);
+//
+//    if (intval($page) % 2 == 0){
+//        $message = 'Четное';
+//
+//    }else{
+//        $message = 'no';
+//    }
+//    $event = new \App\Events\TestEvent($message, 1);
+//    event($event);
+
+
+
+//    \Illuminate\Support\Facades\Event::dispatch($event);
+//   \App\Events\TestEvent::dispatch("Hello world");
 });
 
     Route::get('cart', function (Illuminate\Http\Request $request){
@@ -125,3 +161,5 @@ Route::prefix('admin')->middleware('role:admin')->name('admin.')->group(function
 //    'country'=> \App\Http\Controllers\Admin\CountryController::class,
 //    'article' => \App\Http\Controllers\Admin\ArticleController::class
 //                 ]);
+
+
