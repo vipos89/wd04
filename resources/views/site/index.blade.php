@@ -3,11 +3,9 @@
 
 @section('content')
     <!-- Featured Start -->
-    @role('admin')
-
-    <h1> I'm admin </h1>
-
-    @endrole
+    @php($message = 'Ololo message')
+    <x-package-alert :message="$message"></x-package-alert>
+    {{ $currency }}
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CurrencyServiceInterface;
+use App\Services\CurrentService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +13,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CurrencyServiceInterface $currentService)
     {
         $this->middleware('auth');
     }

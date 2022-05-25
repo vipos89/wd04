@@ -4,6 +4,7 @@
     use App\Http\Controllers\CatalogController;
     use App\Http\Controllers\SiteController;
     use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\File;
     use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -25,18 +26,24 @@ Route::post('/add-to-cart', [CartController::class, 'add']);
 
 
 Route::get('test', function (Illuminate\Http\Request $request){
-    \Illuminate\Support\Facades\App::setLocale('ru');
-    return view('test');
-    $testMail = new \App\Mail\TestMail('Hello text', 2);
-    return $testMail->render();
 
-    for ($i=0; $i<10; $i++){
+    $dirs = array_map(function ($dir){
+        return File::name($dir);
+    }, File::directories(base_path('resources/lang')));
+    dump($dirs);
 
-        \Illuminate\Support\Facades\Mail::to('ololo@mail.ru')
-            ->queue($testMail->onQueue('email'));
-    }
-
-    \Illuminate\Support\Facades\Artisan::call('queue:listen');
+//    \Illuminate\Support\Facades\App::setLocale('ru');
+//    return view('test');
+//    $testMail = new \App\Mail\TestMail('Hello text', 2);
+//    return $testMail->render();
+//
+//    for ($i=0; $i<10; $i++){
+//
+//        \Illuminate\Support\Facades\Mail::to('ololo@mail.ru')
+//            ->queue($testMail->onQueue('email'));
+//    }
+//
+//    \Illuminate\Support\Facades\Artisan::call('queue:listen');
 
 
 //        $user = \App\Models\Product::query()
